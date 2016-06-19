@@ -8,13 +8,13 @@ https://docs.djangoproject.com/en/1.9/howto/deployment/wsgi/
 """
 import os
 import sys
-# env config
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "web_config.settings")
-# print(sys.path)
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
+
 
 from django.core.wsgi import get_wsgi_application
-if 'SERVER_SOFTWARE' in os.environ: #BAE
+if 'SERVER_SOFTWARE' in os.environ: 
     from bae.core.wsgi import WSGIApplication
     application = WSGIApplication(get_wsgi_application())
 else:  
