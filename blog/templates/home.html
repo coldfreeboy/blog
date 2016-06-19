@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+
+{% block add_static %}
+<link rel="stylesheet" href="{{staticUrl}}css/home.css">
+<script src="{{staticUrl}}js/home.js"></script>
+
+{% endblock %}
+
+
+{% block title %}
+博客主页
+{% endblock %}
+
+
+{% block content %}
+<div id='head'>
+
+<p>简简单单</p>
+    
+</div>
+<div id='nav'>
+    <div class = 'nav_box'>
+        <div>
+             <ul>
+                <li><a href="">首页</a></li>
+                <li class="nav_js"><span>技术</span>
+                    <ul class="nav_child">
+                        <li><span>python</span></li>
+                        <li><span>django</span></li>
+                        <li><span>html</span></li>
+                        <li><span>linux</span></li>
+                    </ul>
+                </li>
+                <li><span>随笔</span></li>
+            </ul>
+        </div>
+       
+
+        <div>
+            <span>登陆</span>
+            <span>注册</span>
+        </div>
+    </div>    
+</div>
+
+<div id = "content">
+    <div>
+    hello
+        
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,136 @@
+@charset 'utf-8';
+
+*{
+    font-family: '微软雅黑';
+    font-size: 16px;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+}
+
+ul li{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+#head{
+    height: 120px;
+    background: #dedede;
+    position: relative;
+    p{
+        height: 30px;
+        line-height: 30px;
+        font-size: 30px;
+        position: absolute;
+        top:50%;
+        margin-top: -15px;
+        left:50%;
+        margin-left:-60px; 
+        color:#666;
+    }
+}
+
+
+#nav{
+    @bcg:#1F262D;
+    @h :50px;
+    background: @bcg;
+    color:#fff;
+    height: @h;
+
+    .nav_box{
+        width: 70%;
+        margin: 0 auto;
+
+
+        & span,& a{
+            position: relative;
+            display: block;
+            height: @h;
+            color:#fff;
+            line-height: @h;
+            padding: 0 10px;
+            cursor: pointer;
+
+            &:hover{
+                color: #27A9E3;
+                background: #111;
+            }
+
+        }
+
+        div:first-child{
+            float: left;
+            li{
+                float: left;
+            }
+
+        }
+        div:last-child{
+            float:right;
+            span{
+                float: right;
+                padding: 0 10px;
+                position: relative;
+
+
+                &:first-child:after{
+      
+                    content:"";
+                    position:absolute;
+                    height: 20px;
+                    width: 0;
+                    left:-1px;
+                    top:50%;
+                    margin-top:-10px;
+                    border-left:1px solid #fff;
+                    border-right:1px solid #fff;
+
+                }
+
+            }
+        }
+
+    }
+
+    .nav_js{
+        position: relative;
+        &:hover{
+            .nav_child{
+                display: block;
+            }
+        }
+    }
+    .nav_child{
+        display: none;
+        position: absolute;
+        left:-80px;
+        top:50px;
+        height: @h ;
+        width: 250px;
+        background: #2E363F;
+        overflow: hidden;
+
+        li{
+            float: left;
+        }
+
+    }
+    
+}
+
+#content{
+    height: 1000px;
+    background: #eee;
+    width: 60%;
+    margin: 0 auto;
+    padding:30px 30px;
+
+    >div{
+        padding: 20px 0;
+        background: orange;
+    }
+}
