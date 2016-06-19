@@ -27,7 +27,7 @@ SECRET_KEY = 'ckm61d+atq1xcccws-h(xky6g9s2r_s3nwj2%r!fi0*0g3hj@9'
 
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [".duapp-preview.com",".duapp.com","localhost"]
 
 
 # Application definition
