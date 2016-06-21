@@ -99,12 +99,11 @@ body {
   border-right: 1px solid #aaa;
 }
 #box input {
-  color: #aaa;
   width: 215px;
   padding-left: 55px;
   height: 32px;
 }
-#box .img_input {
+#box #img_input {
   padding-left: 105px;
   width: 164px;
 }

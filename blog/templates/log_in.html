@@ -3,7 +3,9 @@
 {% block add_static %}
 
 <link rel="stylesheet" href="{{staticUrl}}css/login.css">
+<script src="{{staticUrl}}js/md5.js"></script>
 <script src="{{staticUrl}}js/login.js"></script>
+
 
 
 {% endblock %}
@@ -15,7 +17,7 @@
 
 {% block content %}
 
-<div id="msg">error|名字不存在</div>
+<div id="msg"></div>
 
 <div id="title"><span class="log_up"><a href="../log_up">注册</a></span><span class="log_in">登陆</span></div>
 
@@ -23,8 +25,8 @@
     <form action="">
         <div><span class="icon-user"></span><input type="text" value="账号" id="box_user"></div>
         <div><span class="icon-lock"></span><input type="text" value="密码" id="box_pwd"></div>
-                <div><img src="/blog/ajax_captcha/" alt="验证码" id="captcha"><input type="text" class="img_input" value="验证码"></div>
-        <button type="button">登陆</button>
+                <div><img src="/blog/ajax_captcha/" alt="验证码" id="captcha"><input type="text" id="img_input" value="验证码"></div>
+        <button type="button" id="btn_in">登陆</button>
     </form>
         
     

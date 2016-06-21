@@ -19,14 +19,14 @@ def check_post(f):
     return call
 
 
-# FONT_PATH=u'/usr/share/fonts/truetype/freefont/FreeSans.ttf'
+# 字库
 FONT_PATH=u'./blog/static/blog/fonts/FreeSansBoldOblique.ttf'
 
-'''
-验证码图片生成模块
-'''
 class Captcha():
+
     '''
+
+    验证码图片生成模块
     数字与字母随机产生
     初始化时第一个参数选择随机产生位数
     第二个参数选择生成图片长
@@ -157,3 +157,47 @@ class Captcha():
         self.img.save(buf,self.img_type)
         bimg = buf.getvalue()
         return bimg
+
+
+
+
+
+def resolve(request,key,t):
+    """
+    request.POSt的数据解析
+    key:要解析的键
+    t:要解析的类型 dict str int 等
+    """
+    import json
+    try:
+        data = request.POST.get(key)
+    except Exception as e:
+        print(e)
+        raise Exception("error|获取失败")
+    else:
+        if data or data ==u"" or data == 0:
+            try:
+                if t==dict:
+                    data = json.loads(data)
+                    args={}
+                    for key,value in data.iteritems():
+                        if value == u"False" or value==u"false":
+                            args[key]=False
+                        elif value == u"True" or value ==u"true":
+                            args[key]=True
+                        else:
+                            args[key]=value 
+                    return args
+
+                else:
+                    data = t(data)
+                
+            except Exception as e:
+                print(e)
+                raise Exception("error|转化失败")
+            else:
+                return data
+        else:
+            raise Exception("error|原始数据解析失败")
+
+
