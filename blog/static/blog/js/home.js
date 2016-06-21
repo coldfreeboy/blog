@@ -1,5 +1,6 @@
 $(function(){
 
+    // 页面滚动 导航固定
     (function(){
         $(window).scroll(function(){
             if($(this).scrollTop() >= $("#head").height()){
@@ -21,6 +22,16 @@ $(function(){
             }
         })
 
-    })()
+    })();
+
+    // 注册登陆
+    (function(){
+        var log_in = $("#log_in")
+        var log_up = $("#log_up")
+
+        log_in.click(function(){
+            
+        })
+    })();
 
 })

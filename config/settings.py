@@ -25,7 +25,10 @@ SECRET_KEY = 'ckm61d+atq1xcccws-h(xky6g9s2r_s3nwj2%r!fi0*0g3hj@9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = False
+
+
+
+
 
 ALLOWED_HOSTS = [".duapp-preview.com",".duapp.com","localhost"]
 
@@ -88,6 +91,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 
 if "SERVER_SOFTWATE" in os.environ:
+    DEBUG = False
     from bae.core import const
     DATABASES={
         'default':{
@@ -106,7 +110,7 @@ if "SERVER_SOFTWATE" in os.environ:
         }
     }
 else:
-
+    DEBUG=True
     DATABASES={
         'default':{
             'ENGINE': 'django.db.backends.mysql',

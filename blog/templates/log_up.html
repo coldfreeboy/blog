@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block add_static %}
+
+<link rel="stylesheet" href="{{staticUrl}}css/login.css">
+{# <script src="{{staticUrl}}js/home.js"></script> #}
+<script src="{{staticUrl}}js/login.js"></script>
+
+
+{% endblock %}
+
+{% block title %}
+注册
+{% endblock %}
+
+
+{% block content %}
+
+<div id="msg">error|名字不存在</div>
+
+<div id="title"><span class="log_up">注册</span><span class="log_in"><a href="../log_in">登陆</a></span></div>
+
+<div id="box">
+    <form action="">
+        <div><span class="icon-user"></span><input type="text" value="账号" id="box_user"></div>
+        <div><span class="icon-lock"></span><input type="text" value="密码" id="box_pwd"></div>
+        <div><span class="icon-lock"></span><input type="text" value="重复密码" id="box_pwd_again"></div>
+        <div><img src="/blog/ajax_captcha/" alt="验证码" id="captcha"><input type="text" class="img_input" value="验证码"></div>
+        <button type="button">注册</button>
+    </form>
+        
+    
+</div>
+
+{% endblock %}
