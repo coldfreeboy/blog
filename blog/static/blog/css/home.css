@@ -13,8 +13,8 @@ a {
   text-decoration: none;
 }
 #head {
-  height: 120px;
-  background: #dedede;
+  height: 150px;
+  background: #dedede url("/static/blog/img/road1.png") no-repeat center;
   position: relative;
 }
 #head p {
@@ -26,7 +26,7 @@ a {
   margin-top: -15px;
   left: 50%;
   margin-left: -60px;
-  color: #666;
+  color: #fff;
 }
 #nav {
   background: #1f262d;
