@@ -17,7 +17,7 @@ def home(request):
 
     '''
     
-    if "SERVER_SOFTWATE" in os.environ:
+    if "SERVER_SOFTWARE" in os.environ:
         data="true"
     else:
         data="false"

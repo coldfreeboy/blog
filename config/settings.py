@@ -90,7 +90,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 
 
-if "SERVER_SOFTWATE" in os.environ:
+if "SERVER_SOFTWARE" in os.environ:
     DEBUG = False
     from bae.core import const
     DATABASES={
