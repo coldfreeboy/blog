@@ -92,7 +92,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 if "SERVER_SOFTWARE" in os.environ:
     DEBUG = False
-    from bae.core import const
+    # from bae.core import const
     DATABASES={
         'default':{
 
@@ -103,10 +103,14 @@ if "SERVER_SOFTWARE" in os.environ:
             # 'PASSWORD': '044dbcf2adb0462b98288cddf2d50b30',
             # 'HOST': 'sqld.duapp.com',
             # 'PORT': '4050',
-            'USER':const.MYSQL_USER,
-            'PASSWORD':const.MYSQL_PASS,
-            'HOST':const.MYSQL_HOST,
-            'PORT':const.MYSQL_PORT,
+            # 'USER':const.MYSQL_USER,
+            # 'PASSWORD':const.MYSQL_PASS,
+            # 'HOST':const.MYSQL_HOST,
+            # 'PORT':const.MYSQL_PORT,
+            'USER':"01c7e5d089d345bca8d590b1a138e416"
+            'PASSWORD':"044dbcf2adb0462b98288cddf2d50b30",
+            'HOST':"sqld.duapp.com",
+            'PORT':4050,
         }
     }
 else:
