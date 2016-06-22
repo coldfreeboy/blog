@@ -20,6 +20,7 @@
     
 </div>
 <div id='nav'>
+<div class="nav_wel">{{welcome}}</div>
     <div class = 'nav_box'>
         <div>
              <ul>
@@ -45,12 +46,18 @@
        
 
         <div>
-             <span id="log_in"><a href="../log_in">登陆</a></span>
 
-            <span id="log_up"><a href="../log_up">注册</a></span> 
+
+             <span >{{nav_right|safe}}</span>
+             {# <a href="../log_in">登陆</a> #}
+            
+
+            <span >{{nav_left|safe}}</span> 
+            {# <a href="../log_up">注册</a> #}
             
             {# <span>登出</span> #}
-            {# <span>欢迎登陆:dang</span> #}
+            {# <span>新建</span> #}
+            
 
             
         </div>

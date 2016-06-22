@@ -25,13 +25,13 @@ $(function(){
     })();
 
     // 注册登陆
-    (function(){
-        var log_in = $("#log_in")
-        var log_up = $("#log_up")
+   // (function(){
+    //     var log_in = $("#log_in")
+    //     var log_up = $("#log_up")
 
-        log_in.click(function(){
+    //     log_in.click(function(){
             
-        })
-    })();
+    //     })
+    // })();
 
 })

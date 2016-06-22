@@ -14,7 +14,9 @@ a {
 }
 #head {
   height: 150px;
-  background: #dedede url("https://rawgithub.com/coldfreeboy/static/master/blog/img/road1.png") no-repeat center;
+  width: 1440px;
+  margin: 0 auto;
+  background: #ffffff url("https://rawgithub.com/coldfreeboy/static/master/blog/img/road1.png") no-repeat center;
   position: relative;
 }
 #head p {
@@ -32,9 +34,17 @@ a {
   background: #1f262d;
   color: #fff;
   height: 50px;
+  width: 100%;
+}
+#nav .nav_wel {
+  float: left;
+  width: 200px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
 }
 #nav .nav_box {
-  width: 70%;
+  width: 880px;
   margin: 0 auto;
 }
 #nav .nav_box span,
@@ -117,7 +127,7 @@ a {
 #content {
   height: 1000px;
   background: #eee;
-  width: 60%;
+  width: 880px;
   margin: 0 auto;
   padding: 30px 30px;
 }

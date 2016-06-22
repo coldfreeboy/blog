@@ -8,6 +8,7 @@ from util import check_post,resolve
 from django.contrib.auth.models import User
 from django.contrib import auth
 import os
+import time
 
 # Create your views here.
 
@@ -17,13 +18,34 @@ def home(request):
 
     '''
     
-    if "SERVER_SOFTWARE" in os.environ:
-        data="true"
-    else:
-        data="false"
+    # if "SERVER_SOFTWARE" in os.environ:
+    #     data="true"
+    # else:
+    #     data="false"
 
-    env = os.environ
-    return render(request,"home.html",{"data":data,"env":env})
+    # env = os.environ
+
+    
+    if  request.user.is_authenticated():
+        # 登陆处理
+        welcome = u"欢迎:%s" % (request.user.username)
+        url_logout = reverse("logout")
+
+        nav_right = u'<a href="%s">登出</a>' % url_logout
+        nav_left = u"新建"
+    else:
+
+        url_login = reverse("login",args=(u"log_in",))
+        url_logup = reverse("login",args=(u"log_up",))
+        welcome = ""
+        nav_right=u"<a href='%s'>登陆</a>" % url_login
+        nav_left = u"<a href='%s'>注册</a>" % url_logup
+        # r"<a href='../log_up'>注册</a>"
+
+
+
+
+    return render(request,"home.html",{"welcome":welcome,"nav_right":nav_right,"nav_left":nav_left})
 
 def login(request,tag):
     '''
@@ -40,6 +62,7 @@ def ajax_captcha(request):
     cap=util.Captcha()
     cap.creat()
     request.session['cap']=cap.get_chars().lower()
+    request.session['time']=time.time()
     img=cap.get_byte()
     return HttpResponse(img,"image/gif")
 
@@ -59,12 +82,13 @@ def ajax_login(request):
 
         try:
             caps = request.session.get("cap","")
+            last_time = request.session.get("time",0)
         except:
             msg = "error|验证码获取失败!"
             print(msg)
         else:
-            if not caps==cap:
-                msg="error|验证码错误"
+            if not caps==cap or time.time()-last_time>30:
+                msg="error|验证码错误或过期"
             else:
                 try:
                     User.objects.get(username=username)
@@ -104,12 +128,13 @@ def ajax_logup(request):
             except:
                 # 验证码获取
                 s_cap = request.session.get("cap","")
+                last_time = request.session.get("time",0)
 
                 if not s_cap:
                     msg = "error|验证码异常"
                 else:
-                    if not cap.lower() == s_cap:
-                        msg = "error|验证码错误"
+                    if not cap.lower() == s_cap or time.time()-last_time>30:
+                        msg = "error|验证码错误或过期"
                     else:
                         try:
                             # 用户创建
@@ -129,8 +154,8 @@ def ajax_logup(request):
     return JsonResponse({"msg":msg})
 
 
-def ajax_logout(request):
+def logout(request):
     # 退出
     auth.logout(request)
-    return JsonResponse({"msg":"退出成功"})
+    return HttpResponseRedirect(reverse("home"))
 
