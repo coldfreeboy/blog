@@ -7,6 +7,7 @@ from util import check_post,resolve
 
 from django.contrib.auth.models import User
 from django.contrib import auth
+import os
 
 # Create your views here.
 
@@ -15,7 +16,14 @@ def home(request):
     主页
 
     '''
-    return render(request,"home.html")
+    
+    if "SERVER_SOFTWATE" in os.environ:
+        data="true"
+    else:
+        data="false"
+
+    env = os.environ
+    return render(request,"home.html",{"data":data,"env":env})
 
 def login(request,tag):
     '''

@@ -18,7 +18,10 @@ a{
 
 #head{
     height: 150px;
-    background: #dedede url("/static/blog/img/road1.png") no-repeat center;
+    background: #dedede url("https://rawgithub.com/coldfreeboy/static/master/blog/img/road1.png") no-repeat center;
+    // background: #dedede url("https://raw.githubusercontent.com/coldfreeboy/static/master/blog/img/road1.png") no-repeat center;
+
+
     position: relative;
     p{
         height: 30px;
@@ -62,26 +65,26 @@ a{
 
         }
 
-        div:first-child{
+        div{
             float: left;
             li{
                 float: left;
             }
 
         }
-        div:nth-child(3){
-            float: right;
+        div:nth-child(2){
+            float: left;
             // line-height: @h;
             // height: @h;
             input{
-                float: right;
+                float: left;
                 height: @h / 2;
                 width: 200px;
                 padding-left:5px; 
                 margin-top:9px;
             }
             span{
-                float: right;
+                float: left;
                 display: block;
                 height: @h;
                 width: 40px;
@@ -90,7 +93,8 @@ a{
             }
 
         }
-        div:nth-child(2){
+        div:nth-child(3){
+            // border: 1px solid red;
             float:right;
             span{
                 float: right;
@@ -131,7 +135,7 @@ a{
         left:-80px;
         top:50px;
         height: @h ;
-        width: 250px;
+        width: 300px;
         background: #2E363F;
         overflow: hidden;
 

@@ -14,7 +14,7 @@ a {
 }
 #head {
   height: 150px;
-  background: #dedede url("/static/blog/img/road1.png") no-repeat center;
+  background: #dedede url("https://rawgithub.com/coldfreeboy/static/master/blog/img/road1.png") no-repeat center;
   position: relative;
 }
 #head p {
@@ -52,39 +52,39 @@ a {
   color: #27A9E3;
   background: #111;
 }
-#nav .nav_box div:first-child {
+#nav .nav_box div {
   float: left;
 }
-#nav .nav_box div:first-child li {
+#nav .nav_box div li {
   float: left;
 }
-#nav .nav_box div:nth-child(3) {
-  float: right;
+#nav .nav_box div:nth-child(2) {
+  float: left;
 }
-#nav .nav_box div:nth-child(3) input {
-  float: right;
+#nav .nav_box div:nth-child(2) input {
+  float: left;
   height: 25px;
   width: 200px;
   padding-left: 5px;
   margin-top: 9px;
 }
-#nav .nav_box div:nth-child(3) span {
-  float: right;
+#nav .nav_box div:nth-child(2) span {
+  float: left;
   display: block;
   height: 50px;
   width: 40px;
   line-height: 50px;
   text-align: center;
 }
-#nav .nav_box div:nth-child(2) {
+#nav .nav_box div:nth-child(3) {
   float: right;
 }
-#nav .nav_box div:nth-child(2) span {
+#nav .nav_box div:nth-child(3) span {
   float: right;
   padding: 0 10px;
   position: relative;
 }
-#nav .nav_box div:nth-child(2) span:first-child:after {
+#nav .nav_box div:nth-child(3) span:first-child:after {
   content: "";
   position: absolute;
   height: 20px;
@@ -107,7 +107,7 @@ a {
   left: -80px;
   top: 50px;
   height: 50px;
-  width: 250px;
+  width: 300px;
   background: #2E363F;
   overflow: hidden;
 }
