@@ -22,6 +22,7 @@ class Article(models.Model):
 class Comment(models.Model):
     # 评论数据库
     articles = models.ForeignKey(Article,related_name="comments")
+    name = models.CharField(max_length=50)
     text = models.TextField(blank=True)
     date = models.DateTimeField()
 

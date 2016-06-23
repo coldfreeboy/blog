@@ -12,6 +12,9 @@ import time
 
 # Create your views here.
 
+def index(request):
+    return HttpResponseRedirect(reverse("home"))
+
 def home(request):
     '''
     主页
@@ -41,10 +44,6 @@ def home(request):
         nav_right=u"<a href='%s'>登陆</a>" % url_login
         nav_left = u"<a href='%s'>注册</a>" % url_logup
         # r"<a href='../log_up'>注册</a>"
-
-
-
-
     return render(request,"home.html",{"welcome":welcome,"nav_right":nav_right,"nav_left":nav_left})
 
 def login(request,tag):
