@@ -2,9 +2,10 @@
 from django.shortcuts import render,HttpResponse
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect,JsonResponse
+from django.db.models import Q
 import util
 from util import check_post,check_login,re_js,create_html
-
+import json
 from django.contrib.auth.models import User
 from django.contrib import auth
 import os
@@ -301,6 +302,57 @@ def ajax_del(request):
             msg="error|删除失败"
 
     return HttpResponse(msg)
+
+# 主页文章标题列表显示    
+@check_post
+def ajax_titles(request):
+    try:
+        finddata = json.loads(request.POST.get("data"))
+    except Exception as e:
+        msg = "error|前端数据获取失败"
+        print("%s'|'%s"%(msg,e))
+    else:
+        if len(finddata)==1:
+            try:
+                obj = Article.objects.filter(**finddata)
+            except Exception as e:
+                msg="error|数据库获取失败"
+                print("%s'|'%s"%(msg,e))
+            else:
+                if obj.count()==0:
+                    html = u'<h2>没有文章!</h2>'
+                else:
+                    html = create_html(request,obj)
+
+        elif len(finddata)==2:
+            q1 = Q(title__icontains=finddata["title"])
+            q2 = Q(keyworld__icontains=finddata["keys"])
+
+            try:
+                obj = Article.objects.filter(q1 | q2)
+            except Exception as e:
+                msg="error|数据库获取失败"
+                print("%s'|'%s"%(msg,e))
+            else:
+                if obj.count()==0:
+                    html = u'<h2>没有文章!</h2>'
+                else:
+                    html = create_html(request,obj)
+
+    print(html)
+    return HttpResponse(html)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

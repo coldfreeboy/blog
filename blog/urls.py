@@ -24,6 +24,9 @@ home_patterns=[
     url(r'^ajax_login/$',views.ajax_login,name="ajax_login"),
     # 注册
     url(r'^ajax_logup$',views.ajax_logup,name="ajax_logup"),
+
+    # 标题列表获取
+    url(r'^ajax_titles/$',views.ajax_titles,name="ajax_titles"),
     
     
 
@@ -44,6 +47,7 @@ article_patterns=[
 
     #删除文章
     url(r'^ajax_del/$',views.ajax_del,name="ajax_del"),
+
 
 ]
 urlpatterns.extend(article_patterns)

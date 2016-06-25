@@ -81,3 +81,33 @@ function ajax_del(id,sfun,efun){
 
     }) 
 }
+
+// 文章查询
+// 参数:
+// arg: 对象数据类型
+// 可用键:
+// title
+// keys
+// 不用加__icontains
+
+// user__username
+// time
+// article_class
+// 需加__icontains实现包含查询
+function ajax_titles(arg,sf,ef){
+    datas=JSON.stringify(arg)
+    $.ajax({
+        url:"/blog/ajax_titles/",
+        dataType:"text",
+        type:"post",
+        data:{"data":datas},
+        success:function(data){
+            sf(data);
+
+        },
+        error:function(){
+            ef();
+        }
+
+    }) 
+}
