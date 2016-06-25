@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+
+{% block add_static %}
+<link rel="stylesheet" href="{{static}}blog/css/show_article.css">
+{# <script src="{{staticUrl}}js/home.js"></script> #}
+
+{% endblock %}
+
+
+{% block title %}
+{{obj.title}}
+{% endblock %}
+
+
+{% block content %}
+<div id="art">
+    <div id="prompt">{{prompt|safe}}</div>
+    <div id ="title">
+        <p>{{obj.title|safe}}</p>
+        <span>作者:{{obj.user.username}}</span>
+    </div>
+
+    <hr class="cutline">
+    <div id="content">
+        <div id="box">
+            {{obj.content|safe}}
+        </div>
+        
+
+    </div>
+    <hr class="cutline">
+    <div id="buttom">
+            <span>分类:{{obj.article_class}}</span><span>关键字:{{obj.keyword}}</span>
+        </div>
+    
+
+        
+    </div>
+</div>
+
+
+
+
+{% endblock %}

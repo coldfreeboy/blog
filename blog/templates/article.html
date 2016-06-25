@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+
+{% block add_static %}
+<link rel="stylesheet" href="{{static}}blog/css/article.css">
+<script src="{{static}}blog/js/article.js"></script>
+
+<link rel="stylesheet" href="{{static}}dist/css/wangEditor.min.css">
+<script type="text/javascript" src="{{static}}dist/js/wangEditor.min.js"></script>
+
+{% endblock %}
+
+
+{% block title %}
+编辑
+{% endblock %}
+
+
+
+
+{% block content %}
+<div id="nav">
+    <div>
+        欢迎登陆:<span>{{name}}</span>
+    </div>
+
+    <div>
+        今天是:<span>{{time}}</span>
+    </div>
+</div>
+
+<div id="article">
+    <div class="title">
+        标题:<input type="text" id="title" value='{{obj.title}}'>
+        <span id="id" style="display:none">{{obj.id}}</span>
+    
+    </div>
+
+    
+
+    <div class="editor">
+        <div id="editor1">
+        {{obj.content|safe}}
+        </div>
+    </div>
+
+  
+
+    <div class = "buttom">
+
+        <div class= "tag">
+            <span>分类:</span>
+            <select name="tag" id="tag" >
+                <option value="" selected="selected"></option>
+                <option value="django">django</option>
+                <option value="python">python</option>
+                <option value="linux">linux</option>
+                <option value="html">html</option>
+                <option value="随笔">随笔</option>
+                <option value="其他">其他</option>
+            </select> 
+            <script>
+                $("#tag").val("{{obj.article_class}}")
+
+            </script>
+        </div>
+        <div class="key">
+            <span>关键字:</span>
+            <input type="text" id="keys" value="{{obj.keyword}}">
+        </div>
+        <div class="btn">
+            <button type="button" id = "btn_submit">{{btn}}</button>
+        </div>
+        
+    </div>
+        
+</div>
+{% endblock %}

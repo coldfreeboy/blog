@@ -70,16 +70,16 @@ a {
 }
 #nav .nav_box div:nth-child(2) {
   float: left;
+  height: 50px;
+  line-height: 50px;
 }
 #nav .nav_box div:nth-child(2) input {
-  float: left;
   height: 25px;
   width: 200px;
   padding-left: 5px;
-  margin-top: 9px;
 }
 #nav .nav_box div:nth-child(2) span {
-  float: left;
+  float: right;
   display: block;
   height: 50px;
   width: 40px;
@@ -87,6 +87,7 @@ a {
   text-align: center;
 }
 #nav .nav_box div:nth-child(3) {
+  height: 50px;
   float: right;
 }
 #nav .nav_box div:nth-child(3) span {
@@ -107,6 +108,15 @@ a {
 }
 #nav .nav_js {
   position: relative;
+  width: 62px;
+}
+#nav .nav_js:after {
+  position: absolute;
+  content: "";
+  top: 25px;
+  right: 5px;
+  border: 5px solid transparent;
+  border-top-color: #fff;
 }
 #nav .nav_js:hover .nav_child {
   display: block;
@@ -125,13 +135,110 @@ a {
   float: left;
 }
 #content {
-  height: 1000px;
   background: #eee;
   width: 880px;
   margin: 0 auto;
   padding: 30px 30px;
+  box-shadow: 0px 0px 6px 1px #000000;
 }
-#content > div {
+#content .title_list {
   padding: 20px 0;
-  background: orange;
+}
+#content .title_list > div {
+  padding: 10px;
+  border: #orange;
+}
+#content .title_list hr {
+  border: 0;
+  border-bottom: 1px dotted #666;
+}
+#content .title_list p {
+  padding: 10px ;
+  transition: all .5s ease;
+  cursor: pointer;
+}
+#content .title_list p:hover {
+  padding-left: 60px;
+}
+#content .title_list p a {
+  text-decoration: none;
+  color: #000;
+  font-size: 24px;
+}
+#content .title_list span {
+  padding: 5px 20px;
+  color: #888;
+}
+#content .title_list .id {
+  display: none;
+}
+#content .title_list .button {
+  color: #fff;
+  display: block;
+  float: right;
+  padding: 0;
+  height: 35px;
+  width: 60px;
+  background: #27a9e3;
+  line-height: 35px;
+  text-align: center;
+  cursor: pointer;
+  margin: 0px 2px;
+  margin-top: -10px;
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.5);
+}
+#content .title_list .button:hover {
+  color: orange;
+}
+#content .title_list .button:active {
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.5) inset;
+}
+#content .title_list .button a {
+  color: #fff;
+  text-decoration: none;
+}
+#content .title_list .button a:hover {
+  color: orange;
+}
+.page {
+  text-align: center;
+  width: 800px;
+  height: 100px;
+  margin: 0 auto;
+  position: relative;
+}
+.page div {
+  height: 50px;
+  line-height: 50px;
+}
+.page div span {
+  padding: 0 10px;
+  font-size: 20px;
+}
+.page .cursor {
+  cursor: pointer;
+}
+.page div:first-child {
+  position: absolute;
+  height: 50px;
+  top: 25px;
+  left: 10px;
+}
+.page div:nth-child(2) {
+  position: absolute;
+  width: 200px;
+  top: 25px;
+  left: 50%;
+  margin-left: -100px;
+}
+.page div:nth-child(2) span {
+  font-size: 25px;
+}
+.page div:last-child {
+  position: absolute;
+  top: 25px;
+  right: 0px;
+}
+.page div:last-child input {
+  width: 30px;
 }

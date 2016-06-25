@@ -85,16 +85,19 @@ a{
         div:nth-child(2){
             float: left;
             // line-height: @h;
-            // height: @h;
+            height: @h;
+            line-height: @h;
+            // border: 1px solid red;
+
             input{
-                float: left;
+                // float: left;
                 height: @h / 2;
                 width: 200px;
                 padding-left:5px; 
-                margin-top:9px;
+                // margin-top:9px;
             }
             span{
-                float: left;
+                float: right;
                 display: block;
                 height: @h;
                 width: 40px;
@@ -105,6 +108,7 @@ a{
         }
         div:nth-child(3){
             // border: 1px solid red;
+            height: @h;
             float:right;
             span{
                 float: right;
@@ -132,7 +136,18 @@ a{
     }
 
     .nav_js{
-        position: relative;
+        position: relative; 
+        width: 62px;
+        &:after{
+            position: absolute;
+            content: "";
+            top:@h/2;
+            right: 5px;
+            border:5px solid transparent;
+            border-top-color:#fff;
+
+
+        }
         &:hover{
             .nav_child{
                 display: block;
@@ -158,14 +173,140 @@ a{
 }
 
 #content{
-    height: 1000px;
     background: #eee;
     width: 880px;
     margin: 0 auto;
     padding:30px 30px;
+    box-shadow: 0px 0px 6px 1px rgb(0,0,0,0.5);
+    
 
-    >div{
+    .title_list{
         padding: 20px 0;
-        background: orange;
+        // background: orange;
+        >div{
+            // height: 80px;
+            // border-bottom: 1px dotted #999;
+            padding: 10px;
+            border: #orange;
+
+        }
+        hr{
+            border:0;
+            border-bottom: 1px dotted #666;
+        }
+
+        p{
+            padding: 10px ;
+            
+            // background: pink;
+            transition:all .5s ease;
+            cursor: pointer;
+            &:hover{
+                padding-left:60px;
+            }
+            a{
+                text-decoration: none;
+                color:#000;
+                font-size: 24px;
+            }
+        }
+
+        span{
+            padding: 5px 20px;
+            color: #888;
+        }
+        .id{
+            display: none;
+        }
+
+        .button{
+            color:#fff;
+            display: block;
+            float:right;
+            padding: 0;
+            height: 35px;
+            width: 60px;
+            background: #27a9e3;
+            line-height: 35px;
+            text-align: center;
+            cursor: pointer;
+            margin: 0px 2px;
+            margin-top: -10px;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.5);
+            &:hover{
+                color:orange;
+
+            }
+            &:active{
+                box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.5) inset;
+            }
+            a{
+                color:#fff;
+                text-decoration: none;
+                &:hover{
+                    color: orange;
+
+                }
+
+            }
+
+        }
+    }
+
+}
+
+
+// 页面底部功能
+.page{
+    // border: 1px solid red;
+    text-align: center;
+    width: 800px;
+    height: 100px;
+    margin: 0 auto;
+    // overflow: hidden;
+    // padding: 20px 20px;
+    position: relative;
+
+
+    div{
+        height: 50px;
+        // border: 1px solid orange;
+        line-height: 50px;
+        span{
+            padding: 0 10px;
+            font-size: 20px;
+        }
+    }
+
+    .cursor{
+        cursor: pointer;
+    }
+
+    div:first-child{
+        position: absolute;
+        height: 50px;
+        top:25px;
+        left:10px;
+    }
+    div:nth-child(2){
+        position: absolute;
+        // border: 1px solid orange;
+        width: 200px;
+        top:25px;
+        left: 50%;
+        margin-left: -100px;
+        span{
+            font-size: 25px;
+        }
+    }
+
+    div:last-child{
+        position:absolute;
+        top:25px;
+        right: 0px;
+
+        input{
+            width: 30px;
+        }
     }
 }

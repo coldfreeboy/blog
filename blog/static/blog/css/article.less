@@ -1,0 +1,121 @@
+@charset 'utf-8';
+
+
+
+*{
+    font-family: '微软雅黑';
+    font-size: 16px;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+}
+
+body{
+    background: #eee;
+}
+
+html{
+    background: #eee;
+}
+
+@w:800px;
+
+#nav{
+    @h:50px;
+
+    width: @w;
+    height: @h;
+    margin:5px auto;
+    box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.5);
+
+    div{
+        height: @h;
+        line-height: @h;
+        padding:0 50px; 
+        &:first-child{
+            float: left;
+        }
+        &:last-child{
+            float: right;
+        }
+
+    }
+
+
+}
+
+#article{
+    width: @w - 40;
+    // height: 100px;
+    margin:10px auto;
+    padding: 20px;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.5)
+
+}
+
+.title{
+    // border:1px solid red;
+    height: 60px;
+    line-height: 60px;
+    padding:  30px;
+    // border-bottom: 1px dotted;
+    input{
+        height: 40px;
+        width: 600px;
+        padding-left:20px; 
+        // float: right;
+        margin-left: 20px;
+        border: 1px solid #ccc;
+    }
+
+}
+
+.editor{
+    width: 700px;
+    margin:20px auto;
+}
+#editor1{
+    height: 600px;
+    p{
+        margin: 0;
+    }
+}
+
+
+// 底部功能栏
+.buttom{
+    padding: 0 10px;
+    position: relative;
+    height: 100px;
+    line-height: 100px;
+    >div{
+        display: inline-block;
+    }
+    span{
+        padding: 0 20px;
+    }
+    input{
+        width: 200px;
+        border: 1px solid #ccc;
+        padding-left:10px;
+        height: 40px; 
+    }
+}
+.btn{
+    position:absolute;
+    right: 50px;
+    top: 50%;
+    height: 40px;
+    margin-top: -20px;
+    // width: 100px;
+    line-height: 0;
+    button{
+        display: inline-block;
+        height: 40px;
+        background: #27A9e3;
+        width: 100px;
+        cursor: pointer;
+        color:#fff;
+    }
+}
