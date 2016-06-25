@@ -53,7 +53,7 @@ $(function(){
     });
 
     function cap_show(){
-        captcha.attr("src","/blog/ajax_captcha/?flash="+Math.random())
+        $(this).attr("src","/blog/ajax_captcha/?flash="+Math.random())
 
     }
 
@@ -97,6 +97,22 @@ $(function(){
         return 0
     }
 
+    function ajax_log(url,username,pwd,cap,success_fn,error_fn){
+        $.ajax({
+            url:url,
+            data:{"user":username,'pwd':pwd,"cap":cap},
+            datatype:"json",
+            type:"post",
+            success:function(d){
+                success_fn(d)
+
+            },
+            error:function(){
+                error_fn()
+            },
+
+        })
+    }
 
     // 注册提交
 
@@ -122,13 +138,11 @@ $(function(){
 
                 if(list_str[0]=="error"){
                     msg.text(list_str[1])
-                    cap_show()
                 }
 
             }
             ajax_log("/blog/ajax_logup",username,pwds,cap,s_f,function(){
                 msg.text("注册失败")
-                cap_show()
             })
         }
 
@@ -152,13 +166,11 @@ $(function(){
 
                 if(list_str[0]=="error"){
                     msg.text(list_str[1])
-                    cap_show()
                 }
 
             }
             ajax_log("/blog/ajax_login/",username,pwds,cap,s_f,function(){
                 msg.text("登陆失败")
-                cap_show()
             })
 
         }

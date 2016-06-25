@@ -1,0 +1,137 @@
+@charset 'utf-8';
+* {
+  font-family: '微软雅黑';
+  font-size: 16px;
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+}
+ul li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+#head {
+  height: 150px;
+  width: 1440px;
+  margin: 0 auto;
+  background: #ffffff url("https://rawgithub.com/coldfreeboy/static/master/blog/img/road1.png") no-repeat center;
+  position: relative;
+}
+#head p {
+  height: 30px;
+  line-height: 30px;
+  font-size: 30px;
+  position: absolute;
+  top: 50%;
+  margin-top: -15px;
+  left: 50%;
+  margin-left: -60px;
+  color: #fff;
+}
+#nav {
+  background: #1f262d;
+  color: #fff;
+  height: 50px;
+  width: 100%;
+}
+#nav .nav_wel {
+  float: left;
+  width: 200px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+}
+#nav .nav_box {
+  width: 880px;
+  margin: 0 auto;
+}
+#nav .nav_box span,
+#nav .nav_box a {
+  position: relative;
+  display: block;
+  height: 50px;
+  color: #fff;
+  line-height: 50px;
+  padding: 0 10px;
+  cursor: pointer;
+}
+#nav .nav_box span:hover,
+#nav .nav_box a:hover {
+  color: #27A9E3;
+  background: #111;
+}
+#nav .nav_box div {
+  float: left;
+}
+#nav .nav_box div li {
+  float: left;
+}
+#nav .nav_box div:nth-child(2) {
+  float: left;
+}
+#nav .nav_box div:nth-child(2) input {
+  float: left;
+  height: 25px;
+  width: 200px;
+  padding-left: 5px;
+  margin-top: 9px;
+}
+#nav .nav_box div:nth-child(2) span {
+  float: left;
+  display: block;
+  height: 50px;
+  width: 40px;
+  line-height: 50px;
+  text-align: center;
+}
+#nav .nav_box div:nth-child(3) {
+  float: right;
+}
+#nav .nav_box div:nth-child(3) span {
+  float: right;
+  padding: 0 10px;
+  position: relative;
+}
+#nav .nav_box div:nth-child(3) span:first-child:after {
+  content: "";
+  position: absolute;
+  height: 20px;
+  width: 0;
+  left: -1px;
+  top: 50%;
+  margin-top: -10px;
+  border-left: 1px solid #fff;
+  border-right: 1px solid #fff;
+}
+#nav .nav_js {
+  position: relative;
+}
+#nav .nav_js:hover .nav_child {
+  display: block;
+}
+#nav .nav_child {
+  display: none;
+  position: absolute;
+  left: -80px;
+  top: 50px;
+  height: 50px;
+  width: 300px;
+  background: #2E363F;
+  overflow: hidden;
+}
+#nav .nav_child li {
+  float: left;
+}
+#content {
+  height: 1000px;
+  background: #eee;
+  width: 880px;
+  margin: 0 auto;
+  padding: 30px 30px;
+}
+#content > div {
+  padding: 20px 0;
+  background: orange;
+}

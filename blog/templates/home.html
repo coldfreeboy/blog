@@ -2,8 +2,10 @@
 
 
 {% block add_static %}
-<link rel="stylesheet" href="{{staticUrl}}css/home.css">
-<script src="{{staticUrl}}js/home.js"></script>
+<link rel="stylesheet" href="{{static}}blog/css/home.css">
+<link rel="stylesheet" href="{{static}}blog/css/fonts.css">
+<script src="{{static}}blog/js/home.js"></script>
+
 
 {% endblock %}
 
@@ -67,15 +69,25 @@
 </div>
 
 <div id = "content">
-    <div>
-    {{data}}
-    <br>
-
-    {% for i in env %}
-    {{i}}
-    <br>
-    {% endfor %}
-        
+    <div class = "title_list">
+    {{html|safe}}
     </div>
+
+    
+</div>
+
+<div class="page">
+        <div>
+            <span>共</span><span>100</span><span>页</span>
+        </div>
+        <div>
+            <span class="icon-previous2 cursor"></span><span>0</span><span class="icon-next2 cursor"></span>
+        </div>
+
+        <div>
+            <span class="icon-checkmark cursor"></span><input type="text"><span>页</span>
+        </div>
+        
+        
 </div>
 {% endblock %}

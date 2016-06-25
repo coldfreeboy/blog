@@ -1,0 +1,171 @@
+@charset 'utf-8';
+
+*{
+    font-family: '微软雅黑';
+    font-size: 16px;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+}
+
+ul li{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+#head{
+    height: 150px;
+    width: 1440px;
+    margin:0 auto;
+    background: #fff url("https://rawgithub.com/coldfreeboy/static/master/blog/img/road1.png") no-repeat center;
+    // background: #dedede url("https://raw.githubusercontent.com/coldfreeboy/static/master/blog/img/road1.png") no-repeat center;
+
+
+    position: relative;
+    p{
+        height: 30px;
+        line-height: 30px;
+        font-size: 30px;
+        position: absolute;
+        top:50%;
+        margin-top: -15px;
+        left:50%;
+        margin-left:-60px; 
+        color:#fff;
+    }
+}
+
+
+#nav{
+    @bcg:#1F262D;
+    @h :50px;
+    background: @bcg;
+    color:#fff;
+    height: @h;
+    width: 100%;
+
+    .nav_wel{
+        float:left;
+        width: 200px;
+        height: @h;
+        text-align: center;
+        line-height: @h;
+    }
+    .nav_box{
+        width: 880px;
+        margin: 0 auto;
+
+
+        & span,& a{
+            position: relative;
+            display: block;
+            height: @h;
+            color:#fff;
+            line-height: @h;
+            padding: 0 10px;
+            cursor: pointer;
+
+            &:hover{
+                color: #27A9E3;
+                background: #111;
+            }
+
+        }
+
+        div{
+            float: left;
+            li{
+                float: left;
+            }
+
+        }
+        div:nth-child(2){
+            float: left;
+            // line-height: @h;
+            // height: @h;
+            input{
+                float: left;
+                height: @h / 2;
+                width: 200px;
+                padding-left:5px; 
+                margin-top:9px;
+            }
+            span{
+                float: left;
+                display: block;
+                height: @h;
+                width: 40px;
+                line-height: @h;
+                text-align: center;
+            }
+
+        }
+        div:nth-child(3){
+            // border: 1px solid red;
+            float:right;
+            span{
+                float: right;
+                padding: 0 10px;
+                position: relative;
+
+
+                &:first-child:after{
+      
+                    content:"";
+                    position:absolute;
+                    height: 20px;
+                    width: 0;
+                    left:-1px;
+                    top:50%;
+                    margin-top:-10px;
+                    border-left:1px solid #fff;
+                    border-right:1px solid #fff;
+
+                }
+
+            }
+        }
+
+    }
+
+    .nav_js{
+        position: relative;
+        &:hover{
+            .nav_child{
+                display: block;
+            }
+        }
+    }
+    .nav_child{
+        display: none;
+        position: absolute;
+        left:-80px;
+        top:50px;
+        height: @h ;
+        width: 300px;
+        background: #2E363F;
+        overflow: hidden;
+
+        li{
+            float: left;
+        }
+
+    }
+    
+}
+
+#content{
+    height: 1000px;
+    background: #eee;
+    width: 880px;
+    margin: 0 auto;
+    padding:30px 30px;
+
+    >div{
+        padding: 20px 0;
+        background: orange;
+    }
+}

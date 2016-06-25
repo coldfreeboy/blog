@@ -3,20 +3,10 @@ import random
 from io import BytesIO
 from django.shortcuts import render,HttpResponse
 from PIL import Image, ImageDraw, ImageFont,ImageFilter
+import re
+import json
+from django import template 
 
-def check_post(f):
-    """
-    检查post的装饰器
-
-    """
-
-    def call(request, *arg, **args):
-        if request.method=="POST":
-            return f(request, *arg, **args)
-        else:
-            return HttpResponse("<h1>错误:请使用post</h1>")
-
-    return call
 
 
 # 字库
@@ -159,45 +149,102 @@ class Captcha():
         return bimg
 
 
-
-
-
-def resolve(request,key,t):
+# ajax 字典数据解析
+def ajax_dict(request,key):
     """
-    request.POSt的数据解析
-    key:要解析的键
-    t:要解析的类型 dict str int 等
+    ajax传进来的字典数据 进行获取和json反序列化
+
     """
-    import json
     try:
         data = request.POST.get(key)
     except Exception as e:
         print(e)
         raise Exception("error|获取失败")
     else:
-        if data or data ==u"" or data == 0:
-            try:
-                if t==dict:
-                    data = json.loads(data)
-                    args={}
-                    for key,value in data.iteritems():
-                        if value == u"False" or value==u"false":
-                            args[key]=False
-                        elif value == u"True" or value ==u"true":
-                            args[key]=True
-                        else:
-                            args[key]=value 
-                    return args
+        data = json.loads(data)
+    return data
 
-                else:
-                    data = t(data)
-                
-            except Exception as e:
-                print(e)
-                raise Exception("error|转化失败")
-            else:
-                return data
+
+def check_post(f):
+    """
+    检查post的装饰器
+
+    """
+
+    def call(request, *arg, **args):
+        if request.method=="POST":
+            return f(request, *arg, **args)
         else:
-            raise Exception("error|原始数据解析失败")
+            return HttpResponse("<h1>错误:请使用post</h1>")
+    return call
+
+def check_login(f):
+    def call(request, *arg, **args):
+        if request.user.is_authenticated():
+            return f(request, *arg, **args)
+        else:
+            return HttpResponse("<h1>您未登录!</h1>")
+
+    return call
+
+def re_js(text):
+    old_left=u"<script>"
+    old_right = u"</script>"
+
+    new_left = u"&lt;script&gt;"
+    new_right = u"&lt;/script&gt;"
+
+    result_str = re.sub(old_left,new_left,text)
+    result_str = re.sub(old_right,new_right,result_str)
+    return result_str
 
 
+# 生成文章标题列表
+def create_html(request,obj):
+    html=u"""
+        {% for i in obj %}
+            <div>
+                <p><a href="/blog/show_article/{{i.id}}/" target="_blank">{{i.title|safe}}</a></p>
+                <span>作者:{{i.user}}</span>
+                <span>分类:{{i.article_class}}</span>
+                <span>关键字:{{i.keyword}}</span>
+                {# 验证是否为登陆用户,是则显示操作按钮#}
+                {% if user.id == i.user.id %}
+                    <span class="button"><a href="/blog/editor_article/{{i.id}}" target="_blank">编辑</a></span>
+                    <span class="button del">删除</span>
+                {% endif %}
+            </div>
+            <hr>
+        {% endfor %}
+        {% if user %}
+            <script>
+                $(".del").click(function(){
+                    ids = $(this).parent().find("a").first().attr("href")
+                    id = ids.split("/")[3]
+                    ajax_del(id,sf,ef)
+                    function sf(data){
+                        msg=data.split("|")
+                        if(msg[0]=="ok"){
+                        windows.href="/"
+                        }else{
+                        alert(msg[1])
+                        }
+                    }
+
+                    function ef(){
+                        alert("服务器未响应")
+                    }
+                })
+            </script>
+        {% endif %}
+
+    """
+    t = template.Template(html)
+    c = template.Context({"obj":obj,"user":request.user})
+    return t.render(c)
+
+
+
+
+
+    

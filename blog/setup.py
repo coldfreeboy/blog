@@ -5,14 +5,14 @@ def url(request):
     if settings.DEBUG:
 
         return {
-            "staticUrl":"/static/blog/",
+            "static":"/static/",
             "jq"        : "/static/blog/js/jq.js",
 
         }
 
     else:
         return {
-            "staticUrl":"/static/blog/",
+            "static":"/static/",
             "jq"        : "http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js",
 
         } 

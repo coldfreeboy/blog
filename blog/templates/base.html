@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <script type="text/javascript" src="{{ jq }}"></script>
-    {#<script type="text/javascript" src="{{my_url}}js/csrftoken.js"></script>#}
+    <script type="text/javascript" src = "{{static}}blog/js/ajax_interface.js"></script>
+    <link rel="stylesheet" href="{{static}}blog/css/fonts.css">
     <script>
-    $.ajaxSetup({
-        data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
-    });
+        $.ajaxSetup({
+            data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+        });
     </script>
 
     {# 静态资源 #}
