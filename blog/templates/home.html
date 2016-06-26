@@ -28,7 +28,7 @@
              <ul>
                 <li><a href="">首页</a></li>
                 <li class="nav_js"><span>技术</span>
-                    <ul class="nav_child">
+                    <ul class="nav_child" id="btn_list">
                         <li><span>python</span></li>
                         <li><span>django</span></li>
                         <li><span>html</span></li>
@@ -37,31 +37,22 @@
 
                     </ul>
                 </li>
-                <li><span>随笔</span></li>
-                <li><span>关于</span></li>
+                <li><span id="essay">随笔</span></li>
+                <li><span><a href="/blog/about/">关于</a></span></li>
             </ul>
         </div>
 
-        <div>
-            <input type="text"><span>搜索</span>
-        </div>
+         <div>
+            <input type="text" id="search_data"><span id="search"> 搜索</span>
+       </div>
        
 
         <div>
 
-
              <span >{{nav_right|safe}}</span>
-             {# <a href="../log_in">登陆</a> #}
-            
 
             <span >{{nav_left|safe}}</span> 
-            {# <a href="../log_up">注册</a> #}
-            
-            {# <span>登出</span> #}
-            {# <span>新建</span> #}
-            
 
-            
         </div>
 
 
@@ -69,7 +60,7 @@
 </div>
 
 <div id = "content">
-    <div class = "title_list">
+    <div class = "title_list" id="change_box">
     {{html|safe}}
     </div>
 
@@ -78,14 +69,14 @@
 
 <div class="page">
         <div>
-            <span>共</span><span>100</span><span>页</span>
+            <span>共</span><span id="pagecount">{{pagecount}}</span><span>页</span>
         </div>
         <div>
-            <span class="icon-previous2 cursor"></span><span>0</span><span class="icon-next2 cursor"></span>
+            <span class="icon-previous2 cursor" id="btn_prev"></span><span id="pagenum">{{pagenum}}</span><span class="icon-next2 cursor" id="btn_next"></span>
         </div>
 
         <div>
-            <span class="icon-checkmark cursor"></span><input type="text"><span>页</span>
+            <span class="icon-checkmark cursor" id="btn_jump"></span><input type="text" id="page_jump"><span>页</span>
         </div>
         
         

@@ -6,6 +6,8 @@ from PIL import Image, ImageDraw, ImageFont,ImageFilter
 import re
 import json
 from django import template 
+from blog.models import Article
+from django.db.models import Q
 
 
 
@@ -164,7 +166,7 @@ def ajax_dict(request,key):
         data = json.loads(data)
     return data
 
-
+ 
 def check_post(f):
     """
     检查post的装饰器
@@ -218,23 +220,35 @@ def create_html(request,obj):
         {% endfor %}
         {% if user %}
             <script>
+
+        
                 $(".del").click(function(){
-                    ids = $(this).parent().find("a").first().attr("href")
+                    del_obj = $(this).parent()
+                    ids = del_obj.find("a").first().attr("href")
                     id = ids.split("/")[3]
+                    change_box = $("#change_box")
+
+                    
+                    finddata = FINDDATA[0]
+                    page = $("#pagenum")
+                    pagecount = $("#pagecount")
+
                     ajax_del(id,sf,ef)
+
                     function sf(data){
-                        msg=data.split("|")
-                        if(msg[0]=="ok"){
-                        windows.href="/"
-                        }else{
-                        alert(msg[1])
-                        }
+                        list_msg = data.split("|")
+
+                        alert(list_msg[1])
+
+
+                        jump(finddata,Number(page.text()),change_box)
                     }
 
                     function ef(){
-                        alert("服务器未响应")
+                        alert("服务器未响应1111")
                     }
                 })
+                
             </script>
         {% endif %}
 
@@ -242,6 +256,98 @@ def create_html(request,obj):
     t = template.Template(html)
     c = template.Context({"obj":obj,"user":request.user})
     return t.render(c)
+
+def find_data(data):
+
+    # 根据查询关键字返回搜索到的数据集
+    if len(data)==1:
+        try:
+            obj = Article.objects.filter(**data)
+
+        except Exception as e:
+            msg="error|数据库获取失败"
+            print("%s'|'%s"%(msg,e))
+        else:
+            return obj
+
+    elif len(data)==2:
+
+        v1 = data[u"title"]
+        v2 = data[u"keys"]
+        print(data)
+        q1 = Q(title__icontains=v1)
+        q2 = Q(keyword__icontains=v2)
+
+        try:
+            obj = Article.objects.filter(q1 | q2)
+        except Exception as e:
+            msg="error|数据库获取失败"
+            print("%s'|'%s"%(msg,e))
+        else:
+            return obj
+
+    else:
+        return Article.objects.all()
+
+# 总页数及所需也的obj生成
+class Page():
+    def __init__(self,database=Article.objects.all(),max_title=10):
+
+        # 操作集及每页记录数
+        self.base = database
+        self.num_onepage = max_title
+
+    def page_count(self):
+        """
+        总页数
+        """
+
+        # 总文章数
+        num_count = self.base.count()
+
+
+        if num_count == 0:
+            return 0
+
+        if num_count <= self.num_onepage:
+            return 1
+
+        # 总页数  地板除  
+        page_c = int(num_count//self.num_onepage)
+        # 是否整除,没整除则还有一页
+        last =  1 if num_count%self.num_onepage else 0 
+
+        return page_c+last
+
+    def page_obj(self,page_num):
+        """
+        所需页的对象
+        """
+        # 所需对象索引
+        nextpage = page_num*self.num_onepage
+        prevpage = nextpage - self.num_onepage
+
+
+        try:
+            obj = self.base[prevpage:nextpage]
+        except Exception as e:
+            msg="error|数据库页码对象获取失败"
+            print("%s'|'%s"%(msg,e))
+
+        else:
+            return obj
+
+
+
+
+
+
+
+
+        
+
+
+
 
 
 

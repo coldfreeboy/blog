@@ -111,7 +111,7 @@ $(function(){
             var username = user.val()
             
             var pwds = hex_md5(pwd.val())
-            console.log(pwds)
+            // console.log(pwds)
             var cap = img.val()
 
             function s_f(d){

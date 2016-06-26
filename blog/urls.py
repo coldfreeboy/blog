@@ -5,6 +5,7 @@ from . import views
 urlpatterns = [
     # 主页
     url(r'^home/$',views.home,name="home"),
+    url(r"^about/$",views.about,name="about")
 ]
   
 
@@ -24,6 +25,11 @@ home_patterns=[
     url(r'^ajax_login/$',views.ajax_login,name="ajax_login"),
     # 注册
     url(r'^ajax_logup$',views.ajax_logup,name="ajax_logup"),
+
+    # 标题列表获取
+    url(r'^ajax_titles/$',views.ajax_titles,name="ajax_titles"),
+    #获取总页码
+    url(r'^ajax_pagecount/$',views.ajax_pagecount,name="ajax_pagecount")
     
     
 
@@ -44,6 +50,7 @@ article_patterns=[
 
     #删除文章
     url(r'^ajax_del/$',views.ajax_del,name="ajax_del"),
+
 
 ]
 urlpatterns.extend(article_patterns)

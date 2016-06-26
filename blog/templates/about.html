@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+
+{% block add_static %}
+<link rel="stylesheet" href="{{static}}blog/css/about.css">
+
+<script src="{{static}}blog/js/home.js"></script>
+
+
+{% endblock %}
+
+
+{% block title %}
+关于
+{% endblock %}
+
+
+{% block content %}
+<div id="box">
+    <p>部署环境:</p>
+    <ul>
+        <li>百度云引擎基础版</li>
+        <li>数据库:MYSQL</li>
+        <li>python:2.7</li>
+        <li>django:1.8.2</li>
+        <li>费用:0.2元/天</li>
+    </ul>
+
+    <p>联系方式:</p>
+    <p>QQ:270768983</p>
+    <p>多多交流,共同进步</p>
+</div>
+{% endblock %}

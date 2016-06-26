@@ -2,11 +2,13 @@
 from django.shortcuts import render,HttpResponse
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect,JsonResponse
+from django.db.models import Q
 import util
-from util import check_post,check_login,re_js,create_html
-
+from util import check_post,check_login,re_js,create_html,find_data,Page
+import json
 from django.contrib.auth.models import User
 from django.contrib import auth
+from django import template 
 import os
 import time
 
@@ -18,7 +20,8 @@ from blog.models import Article
 # 根地址跳转至home
 def index(request):
     return HttpResponseRedirect(reverse("home"))
-
+def about(request):
+    return render(request,"about.html")
 
 # 主页
 def home(request):
@@ -37,7 +40,7 @@ def home(request):
 
         url_new = reverse("add_article")
 
-        nav_left = u'<a href="%s" target="_blank">新建</a>' % url_new
+        nav_left = u'<a href="%s">新建</a>' % url_new
     else:
 
         url_login = reverse("login",args=(u"log_in",))
@@ -49,13 +52,18 @@ def home(request):
 
     # 文章列表
     obj = Article.objects.all()
-    obj = obj[:20]
+    # 每页最多20条记录
+    page = Page(obj)
+    pagecount = page.page_count()
+
+    obj = obj[0:10]
+
     if obj.count()==0:
         html = u'<h1>没有文章!</h1>'
     else:
         html = create_html(request,obj)
 
-    return render(request,"home.html",{"welcome":welcome,"nav_right":nav_right,"nav_left":nav_left,"html":html})
+    return render(request,"home.html",{"welcome":welcome,"nav_right":nav_right,"nav_left":nav_left,"html":html,'pagecount':pagecount,"pagenum":1,})
 
 
 # 登陆页面
@@ -294,13 +302,69 @@ def ajax_del(request):
         print("%s|%s"%(msg,e))
     else:
         article = Article.objects.get(id=id)
-        if article.user == request.user or request.user.is_superuser:
+        if not article.user == request.user or request.user.is_superuser:
+            msg="error|删除失败"
+        else:
             article.delete()
             msg="ok|删除成功"
-        else:
-            msg="error|删除失败"
 
     return HttpResponse(msg)
+
+
+#总页码生成
+@check_post
+def ajax_pagecount(request):
+    try:
+        finddata = json.loads(request.POST.get("data"))
+    except Exception as e:
+        msg = "error|前端数据获取失败"
+        print("%s'|'%s"%(msg,e))
+    else:
+       
+        obj = find_data(finddata)
+        page_obj = Page(obj)
+        num = page_obj.page_count()
+        # print(num)
+        num =unicode(num)
+        return HttpResponse(num)
+
+
+# 主页文章标题列表显示    
+@check_post
+def ajax_titles(request):
+    try:
+        finddata = json.loads(request.POST.get("data"))
+        page = int(request.POST.get("page"))
+    except Exception as e:
+        msg = "error|前端数据获取失败"
+        print("%s'|'%s"%(msg,e))
+    else:
+        # print(finddata)
+        obj = find_data(finddata)
+        # print(obj)
+        page_obj = Page(obj)
+        obj = page_obj.page_obj(page)
+
+        if obj.count()==0:
+            html = u'<h2>没有文章!</h2>'
+        else:
+            html = create_html(request,obj)
+
+        return HttpResponse(html)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
