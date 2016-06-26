@@ -107,8 +107,8 @@ if "SERVER_SOFTWARE" in os.environ:
             # 'PASSWORD':const.MYSQL_PASS,
             # 'HOST':const.MYSQL_HOST,
             # 'PORT':const.MYSQL_PORT,
-            'USER':"01c7e5d089d345bca8d590b1a138e416",
-            'PASSWORD':"044dbcf2adb0462b98288cddf2d50b30",
+            'USER':"xxxxx",
+            'PASSWORD':"xxxxx",
             'HOST':"sqld.duapp.com",
             'PORT':4050,
         }
