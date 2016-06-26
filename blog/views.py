@@ -20,7 +20,8 @@ from blog.models import Article
 # 根地址跳转至home
 def index(request):
     return HttpResponseRedirect(reverse("home"))
-
+def about(request):
+    return render(request,"about.html")
 
 # 主页
 def home(request):

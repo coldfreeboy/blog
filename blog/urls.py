@@ -5,6 +5,7 @@ from . import views
 urlpatterns = [
     # 主页
     url(r'^home/$',views.home,name="home"),
+    url(r"^about/$",views.about,name="about")
 ]
   
 
