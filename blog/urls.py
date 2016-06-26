@@ -27,6 +27,8 @@ home_patterns=[
 
     # 标题列表获取
     url(r'^ajax_titles/$',views.ajax_titles,name="ajax_titles"),
+    #获取总页码
+    url(r'^ajax_pagecount/$',views.ajax_pagecount,name="ajax_pagecount")
     
     
 

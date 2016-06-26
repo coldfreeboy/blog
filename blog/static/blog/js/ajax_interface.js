@@ -18,7 +18,7 @@ function ajax_log(url,username,pwd,cap,success_fn,error_fn){
         url:url,
         data:{"user":username,'pwd':pwd,"cap":cap},
         datatype:"json",
-        type:"post",
+        type:"post", 
         success:function(d){
             success_fn(d)
 
@@ -66,6 +66,7 @@ function ajax_editor(title,html,tag,keys,id,fun,e_fun){
 // id 要删除的文章id
 
 function ajax_del(id,sfun,efun){
+   
     $.ajax({
         url:"/blog/ajax_del/",
         dataType:"text",
@@ -84,6 +85,7 @@ function ajax_del(id,sfun,efun){
 
 // 文章查询
 // 参数:
+// page:需要显示的页数
 // arg: 对象数据类型
 // 可用键:
 // title
@@ -94,10 +96,30 @@ function ajax_del(id,sfun,efun){
 // time
 // article_class
 // 需加__icontains实现包含查询
-function ajax_titles(arg,sf,ef){
+function ajax_titles(arg,page,sf,ef){
     datas=JSON.stringify(arg)
+    // console.log(datas)
     $.ajax({
         url:"/blog/ajax_titles/",
+        dataType:"text",
+        type:"post",
+        data:{"data":datas,"page":page},
+        success:function(data){
+            sf(data);
+
+        },
+        error:function(){
+            ef();
+        }
+
+    }) 
+}
+
+// 总页码获取
+function ajax_pagecount(arg,sf,ef){
+    datas=JSON.stringify(arg)
+    $.ajax({
+        url:"/blog/ajax_pagecount/",
         dataType:"text",
         type:"post",
         data:{"data":datas},
@@ -110,4 +132,34 @@ function ajax_titles(arg,sf,ef){
         }
 
     }) 
+}
+
+//页面跳转命令
+
+function jump(finddata,num,change_box){
+
+
+    ajax_titles(finddata,num,sf,ef)
+    function sf(data){
+        if(data.length<20){
+
+            s = data.split("|")
+            if(s[1]==undefined){
+                change_box.empty().append(data)
+
+            }else{
+                alert(s[1])
+            }
+
+        }else{
+            change_box.empty().append(data)
+
+        }
+    }
+
+    function ef(){
+        alert("服务器未响应")
+    }
+
+        
 }

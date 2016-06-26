@@ -7,6 +7,7 @@ def url(request):
         return {
             "static":"/static/",
             "jq"        : "/static/blog/js/jq.js",
+            
 
         }
 

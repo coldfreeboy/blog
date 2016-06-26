@@ -61,14 +61,15 @@ $(function(){
     }
 
 
-
+    // 文章提交
     var btn_submi = $("#btn_submit")
     btn_submi.click(function(){
         article_save(s_f,e_f);
         function s_f(data){
             str_list = data.split("|")
             if(str_list[0]=="ok"){
-                window.location.href = "/blog/home/"
+                // alert(str_list[1])
+                window.location.href="/blog/home/"
             }else{
                 alert(str_list[1])
             }
